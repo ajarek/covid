@@ -1,0 +1,22 @@
+<%-include('./partials/header')%>
+<%-include('./partials/navbar')%>
+<div class="container d-flex flex-column justify-content-center align-items-center  " style="width: 100%;min-height:100vh;">
+    <form class="shadow p-5" action="/index" method="post">
+        <div class="mb-3">
+            <label for="day" class="form-label">Podaj datę</label>
+            <input class="form-control" type="date" name="day" id="day">
+        </div>
+        <div class="mb-3">
+            <label for="infected" class="form-label">Podaj ilość zakażonych <i class="fas fa-head-side-virus"></i></label>
+            <input class="form-control" type="number" name="infected" id="infected">
+        </div>
+        <div class="mb-3">
+            <label for="died" class="form-label">Podaj ilość zmarłych <i class="fas fa-head-side-cough-slash"></i></label>
+            <input class="form-control" type="number" name="died" id="died">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Zapisz">
+        </div>
+    </form>
+</div>
+<%-include('./partials/footer')%>

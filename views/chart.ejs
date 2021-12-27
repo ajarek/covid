@@ -1,0 +1,83 @@
+<%-include('./partials/header')%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<%-include('./partials/navbar')%>
+<div class="container d-flex flex-column justify-content-center align-items-center  "
+    style="width: 100%;min-height:100vh;">
+<h1>Wykres</h1>
+<canvas id="myChart" style="width:90%;height: 60vh;"></canvas>
+<% mydisplayData.forEach(md=>{%>
+  <div class="row" style="opacity: 0;">
+<span class="" id="dy"><%=md.day.toLocaleDateString()%></span>
+<span class="" id="inf"><%=md.infected%></span>
+<span class="" id="did"><%=md.died%></span>
+</div>
+<%})%>
+</div>
+<script>
+  const dy = document.querySelectorAll('#dy');
+  const inf = document.querySelectorAll('#inf');
+  const did = document.querySelectorAll('#did');
+  let xValues = []
+  let yValues = []
+  let zValues = []
+  dy.forEach(el => {
+    xValues.push(el.innerHTML)
+  })
+  inf.forEach(el => {
+    yValues.push(el.innerHTML)
+  })
+  did.forEach(el => {
+    zValues.push(el.innerHTML*100)
+  })
+
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        label: "zakaźeni",
+        tension: 0.1,
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "#FF1744",
+        borderColor: "#2E7D32",
+        pointRadius: 5,
+        pointBorderWidth: 3,
+        pointStyle: "circle",
+        data: yValues
+      },
+      {
+    type: 'bar',
+    label: 'zmarli/100',
+    data: zValues,
+    borderColor: 'rgb(255, 99, 132)',
+    backgroundColor: 'rgba(255, 99, 132, 0.2)'
+  }
+    ]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            min: 1,
+            max: 10
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            min: 4,
+            max: 5.5
+          }
+        }],
+      }
+    }
+  });
+</script>
+
+
+
+
+<%-include('./partials/footer')%>

@@ -1,0 +1,27 @@
+<%-include('./partials/header')%>
+<%-include('./partials/navbar')%>
+
+<div class="container d-flex flex-column justify-content-center align-items-center  "
+    style="width: 100%;min-height:100vh;">
+    
+    <div class="container d-flex flex-column justify-content-start mt-5 " style="width: 100%;min-height:100vh;">
+        <table class="table shadow">
+            <thead>
+                <tr>
+                    <th scope="col"><i class="fas fa-calendar-day"></i> Data</th>
+                    <th scope="col"><i class="fas fa-head-side-virus"></i> Ilość zakażonych</th>
+                    <th scope="col"><i class="fas fa-head-side-cough-slash"></i> Ilość zmarłych</th>
+                </tr>
+            </thead>
+            <% mydisplayData.forEach(md=>{%>
+            <tbody>
+                <tr>
+                    <td><%=md.day.toLocaleDateString()%></td>
+                    <td ><%=md.infected%></td>
+                    <td><%=md.died%></td>
+                </tr>
+            </tbody>
+            <%})%>
+
+    </div>
+    <%-include('./partials/footer')%>
